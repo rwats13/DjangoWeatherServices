@@ -24,7 +24,7 @@ def weather_app(request):
         lat     = request.POST['latitude']
         long    = request.POST['longitude']
         if lat != '' and long != '':
-            if -90.0 < float(lat) < 90.0 and -180.0 < float(long) < 180.0:
+            if -90.0 <= float(lat) <= 90.0 and -180.0 <= float(long) <= 180.0:
                 resp    = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
                 json_data = json.loads(resp)
                 data_response = {
