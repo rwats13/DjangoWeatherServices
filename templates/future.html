@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Our Future | Django Weather</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Reece Watson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS styles -->
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="title">
+            <h1>Django Weather Services</h1>
+        </div>
+
+        <!-- Navigation heading bar -->
+        <div class="navbar">
+            <ul>
+                <li><a href="{% url 'home' %}" title="Home">Home</a></li>
+                <li><a href="{% url 'about_us' %}" title="About Us">About Us</a></li>
+                <li><a href="{% url 'customer_feedback' %}" title="Customer Feedback">Customer Feedback</a></li>
+                <li><a href="{% url 'future' %}" title="Our Future">Our Future</a></li>
+                <li><a href="{% url 'weather_app' %}" title="Weather App">WEATHER APP</a></li>
+            </ul>
+        </div>
+
+        <div class="title padding_left">
+            <h2>Under construction...</h2>
+        </div>
+        <p class="paragraph_text padding_left">
+            Our future is bright like a sunny day! Unfortunately, we're still working
+            on it, but we hope to bring you a forecast soon!
+        </p>
+        <footer>Django Weather Services 2021</footer>
+    </body>
+</html>

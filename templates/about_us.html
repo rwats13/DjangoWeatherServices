@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>About Us | Django Weather</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Reece Watson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS styles -->
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="title">
+            <h1>Django Weather Services</h1>
+        </div>
+
+        <!-- Navigation heading bar -->
+        <div class="navbar">
+            <ul>
+                <li><a href="{% url 'home' %}" title="Home">Home</a></li>
+                <li><a href="{% url 'about_us' %}" title="About Us">About Us</a></li>
+                <li><a href="{% url 'customer_feedback' %}" title="Customer Feedback">Customer Feedback</a></li>
+                <li><a href="{% url 'future' %}" title="Our Future">Our Future</a></li>
+                <li><a href="{% url 'weather_app' %}" title="Weather App">WEATHER APP</a></li>
+            </ul>
+        </div>
+
+        <!-- About Us information -->
+        <div class="title padding_left">
+            <h2>About Django Weather Services</h2>
+        </div>
+        <p class="paragraph_text padding_left">
+            Django Weather Services prides itself in providing fast and accurate weather data
+            for any location around the world. Built by an innovative development team and powered
+            by reliable OpenWeather APIs, you can be confident in the forecasts that you are receiving.
+        </p>
+        <p class="paragraph_text padding_left">
+            Our Django Weather App serves as a reliable place to go for current weather forecasts,
+            and we look forward to adding more features as we look toward the future, such as
+            7-day forecasts, surf data and radar information. We are always looking for ways to improve
+            our service, so please feel free to reach out to us through our Customer Feedback form.
+        </p>
+        <footer>
+            Django Weather Services 2021
+        </footer>
+    </body>
+</html>

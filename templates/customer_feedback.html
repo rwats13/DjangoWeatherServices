@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Customer Feedback | Django Weather</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Reece Watson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS styles -->
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="title">
+            <h1>Django Weather Services</h1>
+        </div>
+
+        <!-- Navigation heading bar -->
+        <div class="navbar">
+            <ul>
+                <li><a href="{% url 'home' %}" title="Home">Home</a></li>
+                <li><a href="{% url 'about_us' %}" title="About Us">About Us</a></li>
+                <li><a href="{% url 'customer_feedback' %}" title="Customer Feedback">Customer Feedback</a></li>
+                <li><a href="{% url 'future' %}" title="Our Future">Our Future</a></li>
+                <li><a href="{% url 'weather_app' %}" title="Weather App">WEATHER APP</a></li>
+            </ul>
+        </div>
+
+        <!-- Customer Feedback Form -->
+        <div class="title padding_left">
+            <h2>Need to tell us something? Use the form below!</h2>
+        </div>
+        <form action='' method="POST" class="cust_feedback_form">
+            {% csrf_token %}
+            <div class="form_input" name="form_name">
+                <p>Name:</p>
+                <input id="name" type="text" placeholder="Your name">
+            </div>
+            <div class="form_input">
+                <p>Email address:</p>
+                <input id="email" type="email" placeholder="Your email address">
+            </div>
+            <div class="form_input" name="form_message">
+                <p>Your message:</p>
+            <textarea id="message" type:="text" placeholder="Write your message here..."></textarea>
+            </div>
+            <br>
+            <br>
+            <button class="cust_feedback_submit" type="submit">Submit</button>
+        </form>
+
+        <!-- Public Posts box -->
+        <div class="title margin_top">
+            <h2>See what the community has to say!</h2>
+        </div>
+        <div class="public_posts">
+            <div class="feedback_post">
+                <!-- <img src="" alt="User Image"> -->
+                <h4>John B. | 18/08/2021</h4>
+                <p>I use Django Weather Services all the time! I love it!</p>
+            </div>
+            <div class="feedback_post">
+                <!-- <img src="" alt="User Image"> -->
+                <h4>Emily T. | 15/08/2021</h4>
+                <p>Django Weather Services is amazing! It is always so fast and accurate!</p>
+            </div>
+        </div>
+        <footer>Django Weather Services 2021</footer>
+    </body>
+</html>

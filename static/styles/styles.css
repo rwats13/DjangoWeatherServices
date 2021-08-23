@@ -1,0 +1,213 @@
+/* Universal Styling */
+body {
+    height: 108vh;
+    background: linear-gradient(0deg, #43cea2, #185a9d)
+}
+footer {
+    color: white;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 85%;
+    font-weight: 500;
+    position: fixed;
+    bottom: 8px;
+    right: 0;
+    left: 0;
+    text-align: center;
+}
+.title {
+    color: white;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 125%;
+    word-spacing: 3px;
+    padding-left: 5px;
+}
+.title h3 {
+    font-size: 80%;
+    font-weight: 300;
+}
+.title p {
+    font-size: 60%;
+    font-weight: 300;
+}
+.padding_left {
+    padding-left: 10px;
+}
+.paragraph_text {
+    color: white;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 110%;
+    font-weight: 300;
+    word-spacing: 2px;
+}
+.navbar {
+    position: relative;
+    width: auto;
+    height: 50px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(179, 219, 223, 0.5);
+    margin-bottom: 50px;
+}
+.navbar ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+.navbar li {
+    list-style: none;
+}
+.navbar a {
+    display: block;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: black;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-decoration: none;
+}
+.align_right {
+    text-align: right;
+}
+.align_left {
+    text-align: left;
+}
+.margin_top {
+    margin-top: 75px;
+}
+.line_height {
+    line-height: 35px;
+}
+
+/* Home Page */
+.video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+.video video {
+    width: 75%;
+    height: 75%;
+    object-fit: inherit;
+    border-radius: 360px;
+    border: 5px solid rgba(255, 255, 255, 0.5)
+}
+
+/* Customer Feedback Page */
+.cust_feedback_form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    max-width: 600px;
+    padding: 20px;
+}
+.form_input input {
+    background-color: azure;
+    border: 1px solid grey;
+    line-height: 30px;
+    width: 500px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+#message {
+    background-color: azure;
+    width: 590px;
+    height: 125px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+.form_input p {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+.cust_feedback_submit {
+    font-family: 'Merriweather Sans', sans-serif;
+    line-height: 30px;
+    width: 200px;
+    margin: auto;
+}
+.public_posts {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    max-width: 1400px;
+    padding: 20px;
+}
+.feedback_post {
+    font-family: 'Merriweather Sans', sans-serif;
+    border: 2px solid grey;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+/* Weather App */
+.location_search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 100px;
+}
+.location_search input {
+    font-size: 1.17em;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+    height: 2.5em;
+    width: 350px;
+    margin: 0 15px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 6px 10px rgba(179, 219, 223, 0.5);
+}
+#location_submit {
+    font-size: 1.17em;
+    margin-top: 25px;
+    height: 3em;
+    width: 150px;
+    font-family: 'Merriweather Sans', sans-serif;
+    border-radius: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.445);
+    background: linear-gradient(180deg, #43cea2ad, #185b9da8);
+    color: white;
+}
+#location_submit:active {
+    background: linear-gradient(0deg, #43cea2ad, #185b9da8)
+}
+.weather_data {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 75px;
+    max-width: 500px;
+    padding: 10px 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(179, 219, 223, 0.5);
+    font-family: 'Merriweather Sans', sans-serif;
+}
+.weather_data h2 {
+    text-align: center;
+}
+.weather_data h4 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.left_column_width {
+    width: 230px;
+}
+.centre_column_width {
+    width: 50px;
+}
+.sun_image_width {
+    width: 75px;
+}
+.weather_data_message {
+    text-align: center;
+    margin-top: 40px;
+}
+.error_message {
+    color: red;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+}

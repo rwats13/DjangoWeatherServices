@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Django Weather App | Django Weather</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Reece Watson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS styles -->
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="title">
+            <h1>Django Weather Services</h1>
+        </div>
+        
+        <!-- Navigation heading bar -->
+        <div class="navbar">
+            <ul>
+                <li><a href="{% url 'home' %}" title="Home">Home</a></li>
+                <li><a href="{% url 'about_us' %}" title="About Us">About Us</a></li>
+                <li><a href="{% url 'customer_feedback' %}" title="Customer Feedback">Customer Feedback</a></li>
+                <li><a href="{% url 'future' %}" title="Our Future">Our Future</a></li>
+                <li><a href="{% url 'weather_app' %}" title="Weather App">WEATHER APP</a></li>
+            </ul>
+        </div>
+
+        <div class="title padding_left">
+            <h2>Welcome to the Django Weather App! </h2>
+        </div>
+
+        <div class="title padding_left">
+            <h3>Search for your location using <u>latitude</u> and <u>longitude</u> to get up-to-date weather data at your fingertips. </h3>
+            <p><b><u>NOTE:</u></b> If you input a "S" latitude or "W" longitude, please add a "-" in front of the number.</p>
+        </div>
+
+        <!-- Latitude and Longitude inputs, Search button -->
+        <form action="" method="POST" class="location_search">
+            {% csrf_token %}
+            <div>
+                <input id="latitude_search" name="latitude" placeholder="Search for a latitude...">   
+                <input id="longitude_search" name="longitude" placeholder="Search for a longitude...">
+            </div>
+            <div>
+                <button id="location_submit" type="submit">Search</button>  
+            </div>
+        </form>
+
+        <!-- Error message, only displays if an invalid lat and long values are inputted. -->
+        {% if error_message %}
+            <div class="error_message">{{ error_message }}</div>
+        {% endif %}
+
+        <br>
+        <!-- Weather data box, data is displayed if appropriate lat and long values are inputted.  -->
+        {% if crnt_temp %}
+        <div class="weather_data">
+            <h2>{{location}}</h2>
+            <h4>{{descrip}}</h4>
+            <table>
+                <tr>
+                    <td class="align_right line_height left_column_width"><b>Current Temperature</b></td>
+                    <td class="centre_column_width"></td>
+                    <td class="align_left">{{crnt_temp}}</td>
+                </tr>
+                <tr>
+                    <td class="align_right line_height">Minimum Temp</td>
+                    <td class="centre_column_width"></td>
+                    <td class="align_left">{{min_temp}}</td>
+                </tr>
+                <tr>
+                    <td class="align_right line_height">Maximum Temp</td>
+                    <td class="centre_column_width"></td>
+                    <td class="align_left">{{max_temp}}</td>
+                </tr>
+                <tr>
+                    <td class="align_right line_height"><b>Humidity</b></td>
+                    <td class="centre_column_width"></td>
+                    <td class="align_left">{{humidity}}</td>
+                </tr>
+                <tr>
+                    <td class="align_right"><img src="{% static 'images/sunrise.png' %}" alt="Sunrise" class="sun_image_width"></td>
+                    <td class="centre_column_width"></td>
+                    <td class="align_left"><img src="{% static 'images/sunset.png' %}" alt="Sunset" class="sun_image_width"></td>
+                </tr>
+                <tr>
+                    <td class="align_right">{{sunrise}}</td>
+                    <td class="centre_column_width"></td>
+                    <td class="align_left">{{sunset}}</td>
+                </tr>
+            </table>
+            <h3 class="weather_data_message">Have a fantastic day!</h3>
+        </div>
+
+        <!-- Instruction box, appears instead of Weather data box if there is no lat or long values inputted. -->
+        {% elif crnt_temp is None %}
+        <div class="weather_data">
+            <h2>Enter latitude and longitude values above to try it out!</h2>
+        </div>
+        {% endif %}
+        
+        <footer>
+            Django Weather Services 2021
+        </footer>
+    </body>
+</html>
