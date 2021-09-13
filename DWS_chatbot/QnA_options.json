@@ -1,0 +1,34 @@
+[
+	{
+		"question": "Hello",
+		"answer": "Hi!"
+	},
+	{
+		"question": "How are you?",
+		"answer": "I'm great, thanks for asking!"
+	},
+	{
+		"question": "What's the weather like today?",
+		"answer": "Well, where are you located?"
+	},
+	{
+		"question": "Can you help me?",
+		"answer": "Sure, what do you need help with?"
+	},
+	{
+		"question": "I need help",
+		"answer": "Sure, what do you need help with?"
+	},
+	{
+		"question": "Help",
+		"answer": "Sure, what do you need help with?"
+	},
+	{
+		"question": "The weather app is giving me the wrong location",
+		"answer": "Make sure to double check your latitude and longitude coordinates! If your latitude is South (S), or your longitude is West (W), be sure to put a dash (-) in front of the coordinate."
+	},
+	{
+		"question": "LOLOL",
+		"answer": "LOLOL"
+	}
+]
