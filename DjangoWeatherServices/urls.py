@@ -16,7 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('DWS_app.urls', namespace='DWS_app')),
+#     path('chatbot/', include('DWS_chatbot.urls', namespace='DWS_chatbot')),
+# ]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('DWS_app.urls')),
+    path('', include('DWS_app.urls', 'DWS_chatbot.urls')),
+    path('', include('DWS_chatbot.urls', namespace='DWS_chatbot')),
+    # path('general_chat/', include('general_chat.urls')),
+    # path('DWS_chatbot/', include('DWS_chatbot.urls')),
 ]

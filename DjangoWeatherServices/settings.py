@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'DWS_app',
+    'DWS_chatbot',
+    'general_chat',
 ]
 
 MIDDLEWARE = [

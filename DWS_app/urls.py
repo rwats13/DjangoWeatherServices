@@ -1,7 +1,8 @@
-from django.conf.urls import handler400, handler500
+# from django.conf.urls import handler400, handler500
 from django.urls import path
 from . import views
 
+app_name = 'DWS_app'
 urlpatterns = [
     path('', views.home, name='home'),
     path('about_us/', views.about_us, name='about_us'),
