@@ -8,6 +8,10 @@
 		"answer": "I'm great, thanks for asking!"
 	},
 	{
+		"question": "Good thanks",
+		"answer": "That's good!"
+	},
+	{
 		"question": "What's the weather like today?",
 		"answer": "Well, where are you located?"
 	},
@@ -25,6 +29,18 @@
 	},
 	{
 		"question": "The weather app is giving me the wrong location",
-		"answer": "Make sure to double check your latitude and longitude coordinates! If your latitude is South (S), or your longitude is West (W), be sure to put a dash (-) in front of the coordinate."
+		"answer": "Make sure to double check your latitude and longitude coordinates! If your latitude is South (S), or your longitude is West (W), be sure to put a dash (-) in front of the coordinate. Or, you can ask me some weather questions here!"
+	},
+	{
+		"question": "Thank you for your help",
+		"answer": "You're welcome!"
+	},
+	{
+		"question": "Thanks",
+		"answer": "You're welcome!"
+	},
+	{
+		"question": "Thank you",
+		"answer": "You're welcome!"
 	}
 ]

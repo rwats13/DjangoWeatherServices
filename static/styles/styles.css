@@ -224,13 +224,29 @@ footer {
     font-weight: bold;
 }
 #user_input {
-    font-size: 1.17em;
+    font-size: 1em;
     font-family: 'Merriweather Sans', sans-serif;
-    text-align: center;
-    height: 2.5em;
-    width: 350px;
-    margin: 0 15px;
+    text-align: left;
+    height: 3em;
+    padding-left: 16px;
+    width: 385px;
+    margin: 0 10px;
     border-radius: 12px;
     border: none;
-    box-shadow: 0 6px 10px rgba(179, 219, 223, 0.5);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+}
+#chat_submit_button {
+    font-size: 1.17em;
+    margin-top: 25px;
+    height: 2em;
+    width: 65px;
+    font-family: 'Merriweather Sans', sans-serif;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.445);
+    background: linear-gradient(180deg, #43cea2, #185b9d);
+    color: white;
+}
+#chat_submit_button:active {
+    background: linear-gradient(0deg, #43cea2ad, #185b9da8)
 }

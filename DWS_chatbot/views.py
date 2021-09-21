@@ -7,7 +7,7 @@ import requests
 from datetime import datetime
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
-from .chatbot_logic import talk
+from .chatbot_logic import talk, qa_data
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -30,53 +30,53 @@ def chatbot(request):
         form = ChatBotForm(request.POST)
         if form.is_valid():
             question = form.cleaned_data['question']
-            if question[0:15] == 'temperature in ':
-                cityname = question[15:]
-                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
-                json_data = json.loads(resp)
-                temp_data = str(json_data['main']['temp'])
-                answer = "The current temperature in " + cityname + " is " + temp_data + "°C."
-            elif question[0:12] == 'humidity in ':
-                cityname = question[12:]
-                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
-                json_data = json.loads(resp)
-                humidity_data = str(json_data['main']['humidity'])
-                answer = "The humidity in " + cityname + " is " + humidity_data + "%."
-                # Below make general weather, where it tells you sunny, rainy, etc. + could add extra message, e.g. rainy = bring an umbrella, sunny = slip slop slap!
-            elif question[0:12] == 'weather in ':
-                cityname = question[12:]
-                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
-                json_data = json.loads(resp)
-                humidity_data = str(json_data['main']['humidity'])
-                answer = "The humidity in " + cityname + " is " + humidity_data + "%."
-            else:
+            question_words = question.strip("?").split()
+            if question in qa_data:
                 answer = talk(question)
+            elif "temperature" in question_words:
+                cityname = question_words[-1]
+                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
+                json_data = json.loads(resp)
+                temp_data = json_data['main']['temp']
+                feels_like = str(json_data['main']['feels_like'])
+                if temp_data >= 27:
+                    answer = "The current temperature in " + cityname + " is " + str(temp_data) + "°C, but it feels like " + feels_like + ". It's hot out there!"
+                elif temp_data <= 22:
+                    answer = "The current temperature in " + cityname + " is " + str(temp_data) + "°C, but it feels like " + feels_like + ". Don't forget a jacket!"
+                else:    
+                    answer = "The current temperature in " + cityname + " is " + str(temp_data) + "°C, and it feels like " + feels_like + "."
+            elif "humidity" in question_words:
+                cityname = question_words[-1]
+                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
+                json_data = json.loads(resp)
+                humidity_data = str(json_data['main']['humidity'])
+                answer = "The humidity in " + cityname + " is " + humidity_data + "%."
+            elif ("weather" in question_words) or ("located in" in question) or ("I'm in" in question):
+                cityname = question_words[-1]
+                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
+                json_data = json.loads(resp)
+                weather_description = str(json_data['weather'][0]['description'])
+                if (weather_description == "clear sky") or (weather_description == "sunny"):
+                    answer = "The weather in " + cityname + " is " + weather_description + ". Be sure to wear a hat!"
+                elif weather_description == "light rain":
+                    answer = "The weather in " + cityname + " is " + weather_description + ". You might need an umbrella!"
+                elif (weather_description == "overcast clouds") or (weather_description == "scattered clouds") or (weather_description == "broken clouds") or (weather_description == "few clouds"):
+                    answer = "The weather in " + cityname + " is " + weather_description + ". Watch for rain just in case."
+                else:
+                    answer = "The weather in " + cityname + " is " + weather_description + "."
+            elif "sunrise" in question_words:
+                cityname = question_words[-1]
+                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
+                json_data = json.loads(resp)
+                sunrise = datetime.utcfromtimestamp(json_data['sys']['sunrise']).strftime('%H:%M')
+                answer = "Sunrise in " + cityname + " is at " + sunrise + ". Rise and shine!"
+            elif "sunset" in question_words:
+                cityname = question_words[-1]
+                resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
+                json_data = json.loads(resp)
+                sunset = datetime.utcfromtimestamp(json_data['sys']['sunset']).strftime('%H:%M')
+                answer = "Sunset in " + cityname + " is at " + sunset + "."
+            else:
+                answer = "I'm sorry, I don't understand your question. Please ask again."
     form = ChatBotForm()
     return render(request, 'chatbot.html', {'user_input_form': form, 'question': question, 'answer': answer})
-
-
-
-
-
-
-
-
-
-
-
-    # while True:
-    #     request = input("You: ")
-    #     response = weather_chatbot.get_response(request)
-    #     print("WeatherBot: ", response)
-    
-    # return render(request, 'chatbot.html')
-
-
-
-
-# # From Monday call
-# def talk(msg):
-#     return chatbot.get_response(msg)
-
-# If user input == Bye:
-#   break

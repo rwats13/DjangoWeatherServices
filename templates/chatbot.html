@@ -33,7 +33,7 @@
 
         <div class="title padding_left">
             <h3>Ask WeatherBot your questions below!</h3>
-            <!-- <p><b><u>NOTE:</u></b> If you input a "S" latitude or "W" longitude, please add a "-" in front of the number.</p> -->
+            <p><b><u>NOTE:</u></b> If you're asking about a city's weather information, you can help WeatherBot out by writing the city name last!</p>
         </div>
 
         <!-- CHAT DIALOG BOX -->
@@ -41,7 +41,7 @@
             <form method="POST" name="user_input_form">
                 {% csrf_token %}
                 <input id="user_input" name="question" placeholder="Ask WeatherBot a question..." autofocus="autofocus">
-                <input id="submit_button" type="submit">
+                <input id="chat_submit_button" type="submit" value="🡆">
             </form>
             <div class="chat_window">
                 <p class="chatbot_message">You:</p>{{question}}
