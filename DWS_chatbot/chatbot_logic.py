@@ -1,4 +1,3 @@
-# from DWS_chatbot.forms import ChatBotForm
 import json
 from datetime import datetime
 from chatterbot import ChatBot

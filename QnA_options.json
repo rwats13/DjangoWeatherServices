@@ -32,6 +32,34 @@
 		"answer": "Make sure to double check your latitude and longitude coordinates! If your latitude is South (S), or your longitude is West (W), be sure to put a dash (-) in front of the coordinate. Or, you can ask me some weather questions here!"
 	},
 	{
+		"question": "Is it sunny today?",
+		"answer": "Hmm, I'm not sure. Try asking me what the weather is like in your location."
+	},
+	{
+		"question": "Is it cloudy today?",
+		"answer": "Hmm, I'm not sure. Try asking me what the weather is like in your location."
+	},
+	{
+		"question": "Will it rain today?",
+		"answer": "Hmm, I'm not sure. Try asking me what the weather is like in your location."
+	},
+	{
+		"question": "Should I bring an umbrella?",
+		"answer": "Possibly, but try asking me about the weather in your location to know if it will rain today."
+	},
+	{
+		"question": "Do I need a hat outside?",
+		"answer": "It's usually a good idea to bring a hat outside. Try asking me about the weather in your location to see how sunny it is."
+	},
+	{
+		"question": "Is it hot today?",
+		"answer": "Hmm, I'm not sure. Try asking me about the temperature in your location."
+	},
+	{
+		"question": "Is it cold today?",
+		"answer": "Hmm, I'm not sure. Try asking me about the temperature in your location."
+	},
+	{
 		"question": "Thank you for your help",
 		"answer": "You're welcome!"
 	},

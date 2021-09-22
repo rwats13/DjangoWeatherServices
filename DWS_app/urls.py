@@ -1,4 +1,3 @@
-# from django.conf.urls import handler400, handler500
 from django.urls import path
 from . import views
 

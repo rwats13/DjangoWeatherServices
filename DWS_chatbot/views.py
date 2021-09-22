@@ -1,26 +1,13 @@
-# from DWS_chatbot.forms import ChatBotForm
 from django.shortcuts import render
-from django.http import HttpResponse
 import json
 import urllib.request as urlb
-import requests
 from datetime import datetime
-from chatterbot import ChatBot
-from chatterbot.trainers import ListTrainer
 from .chatbot_logic import talk, qa_data
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-from django.views import View
 from .forms import ChatBotForm
 
 # Create your views here.
-
-
-# class QuestionView(View):
-#     def post(self, request, *args, **kwargs):
-#         response = talk(request.POST['question'])
-
-#         return HttpResponse(response, 200)
 
 @method_decorator(csrf_exempt, name='dispatch')
 def chatbot(request):
@@ -33,6 +20,7 @@ def chatbot(request):
             question_words = question.strip("?").split()
             if question in qa_data:
                 answer = talk(question)
+            
             elif "temperature" in question_words:
                 cityname = question_words[-1]
                 resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
@@ -45,12 +33,14 @@ def chatbot(request):
                     answer = "The current temperature in " + cityname + " is " + str(temp_data) + "°C, but it feels like " + feels_like + ". Don't forget a jacket!"
                 else:    
                     answer = "The current temperature in " + cityname + " is " + str(temp_data) + "°C, and it feels like " + feels_like + "."
+            
             elif "humidity" in question_words:
                 cityname = question_words[-1]
                 resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
                 json_data = json.loads(resp)
                 humidity_data = str(json_data['main']['humidity'])
                 answer = "The humidity in " + cityname + " is " + humidity_data + "%."
+            
             elif ("weather" in question_words) or ("located in" in question) or ("I'm in" in question):
                 cityname = question_words[-1]
                 resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
@@ -64,18 +54,21 @@ def chatbot(request):
                     answer = "The weather in " + cityname + " is " + weather_description + ". Watch for rain just in case."
                 else:
                     answer = "The weather in " + cityname + " is " + weather_description + "."
+            
             elif "sunrise" in question_words:
                 cityname = question_words[-1]
                 resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
                 json_data = json.loads(resp)
                 sunrise = datetime.utcfromtimestamp(json_data['sys']['sunrise']).strftime('%H:%M')
                 answer = "Sunrise in " + cityname + " is at " + sunrise + ". Rise and shine!"
+            
             elif "sunset" in question_words:
                 cityname = question_words[-1]
                 resp = urlb.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={cityname}&appid=45aae1ed72fe61ec3dee566d265dc3f9&units=metric').read()
                 json_data = json.loads(resp)
                 sunset = datetime.utcfromtimestamp(json_data['sys']['sunset']).strftime('%H:%M')
                 answer = "Sunset in " + cityname + " is at " + sunset + "."
+            
             else:
                 answer = "I'm sorry, I don't understand your question. Please ask again."
     form = ChatBotForm()
